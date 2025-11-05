@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "chip8-emulator"
+version = "0.1.0"
+description = "A minimal yet complete CHIP-8 emulator written in Python"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+license = "MIT"
+packages = [{ include = "chip8", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pygame = "^2.6.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+mypy = "^1.12.0"
+ruff = "^0.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unreachable = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
