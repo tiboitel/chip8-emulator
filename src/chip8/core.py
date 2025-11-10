@@ -18,8 +18,7 @@ class Chip8:
         self.keypad = Keypad()
         self.running = False
 
-    def load_fonset():
-        fontset_size = 80
+    def load_fontset(self):
         fontset_start_addr = 0x50
         for i, byte in enumerate(FONTSET):
             self.memory[fontset_start_addr + i] = byte

@@ -10,6 +10,7 @@ class Renderer:
         self.window = pygame.display.set_mode(
             (display.WIDTH * self.SCALE, display.HEIGHT * self.SCALE)
         )
+        pygame.display.set_caption("CHIP-8 Emulator")
 
     def render(self):
         for y, row in enumerate(self.display.pixels):

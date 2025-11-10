@@ -35,6 +35,9 @@ def main():
     chip8 = Chip8()
     renderer = Renderer(chip8.display)
 
+    # Load fontset
+    chip8.load_fontset()
+
     # Load ROM
     with open(rom_path, "rb") as f:
         program = f.read()
