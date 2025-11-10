@@ -1,11 +1,12 @@
 import pygame
 
+
 class Renderer:
     SCALE = 10
 
     def __init__(self, display):
         pygame.init()
-        self.display = display;
+        self.display = display
         self.window = pygame.display.set_mode(
             (display.WIDTH * self.SCALE, display.HEIGHT * self.SCALE)
         )

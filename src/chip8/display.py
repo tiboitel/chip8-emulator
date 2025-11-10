@@ -19,10 +19,9 @@ class Display:
                 sprite_bit = (byte >> (7 - bit)) & 1
                 if sprite_bit == 0:
                     continue
-                px = (x + bit) % self.width
-                py = (y + row_index) % self.height
-                idx = py * self.width + px
-                if self.pixels[idx] == 1:
+                px = (x + bit) % self.WIDTH
+                py = (y + row_index) % self.HEIGHT
+                if self.pixels[py][px] == 1:
                     collision = True
-                self.pixels[idx] ^= 1
+                self.pixels[py][px] ^= 1
         return collision

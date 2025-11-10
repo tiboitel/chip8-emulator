@@ -1,7 +1,9 @@
 import time
+
 from .display import Display
-from .keypad import Keypad
 from .handlers import OPCODES
+from .keypad import Keypad
+
 
 class Chip8:
     def __init__(self):
@@ -41,4 +43,4 @@ class Chip8:
         self.running = True
         while self.running:
             self.cycle()
-        time.sleep(1 / 500.0)
+            time.sleep(1 / 500.0)

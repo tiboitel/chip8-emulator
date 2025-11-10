@@ -1,4 +1,5 @@
 # A hashtable-based opcode dispatcher for CHIP-8
+import random
 
 def cls(chip8, opcode):
     chip8.display.clear()
@@ -69,7 +70,7 @@ def xor_vx_vy(chip8, opcode):
 def add_vx_vy(chip8, opcode):
     x = (opcode & 0x0F00) >> 8
     y = (opcode & 0x00F0) >> 4
-    chip8.V[x] += chip8.V[y]
+    result = chip8.V[x] + chip8.V[y]
     chip8.V[0xF] = 1 if result > 0xFF else 0
     chip8.V[x] = result & 0xFF
     chip8.pc += 2
@@ -119,8 +120,12 @@ def rnd_vx_byte(chip8, opcode):
     chip8.pc += 2
 
 def drw_vx_vy_nibble(chip8, opcode):
-    x = (opcode & 0x0F00) >> 8
-    chip8.delay_timer = chip8.V[x]
+    x = chip8.V[(opcode & 0x0F00) >> 8]
+    y = chip8.V[(opcode & 0x00F0) >> 4]
+    n = opcode & 0x000F
+    sprite = chip8.memory[chip8.I:chip8.I + n]
+    collision = chip8.display.draw_sprite(x, y, sprite)
+    chip8.V[0xF] = 1 if collision else 0
     chip8.pc += 2
 
 def skp_vx(chip8, opcode):

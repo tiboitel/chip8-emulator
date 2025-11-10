@@ -1,5 +1,7 @@
 import sys
+
 import pygame
+
 from chip8.core import Chip8
 from chip8.renderer import Renderer
 
