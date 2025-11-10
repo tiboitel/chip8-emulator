@@ -3,7 +3,7 @@ import time
 from .display import Display
 from .handlers import OPCODES
 from .keypad import Keypad
-
+from .constants import FONTSET
 
 class Chip8:
     def __init__(self):
@@ -17,6 +17,12 @@ class Chip8:
         self.display = Display()
         self.keypad = Keypad()
         self.running = False
+
+    def load_fonset():
+        fontset_size = 80
+        fontset_start_addr = 0x50
+        for i, byte in enumerate(FONTSET):
+            self.memory[fontset_start_addr + i] = byte
 
     def load_program(self, program: bytes):
         for i, byte in enumerate(program):
@@ -37,7 +43,6 @@ class Chip8:
             self.delay_timer -= 1
         if self.sound_timer > 0:
             self.sound_timer -= 1
-
 
     def run(self):
         self.running = True
